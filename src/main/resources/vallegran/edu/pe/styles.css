@@ -1,0 +1,173 @@
+/* Paleta tomada de la web: rojo #8B2F24, dorado #C99B52, crema #F7F4EE, texto #29231F */
+
+.root {
+    -fx-font-family: "Segoe UI", "DM Sans", sans-serif;
+    -fx-font-size: 13px;
+    -fx-base: #F7F4EE;
+    -fx-focus-color: #C99B52;
+    -fx-faint-focus-color: transparent;
+}
+
+/* ---------- Login ---------- */
+.login-root {
+    -fx-background-color: linear-gradient(to bottom right, #8B2F24, #68231C);
+}
+.login-card {
+    -fx-background-color: white;
+    -fx-background-radius: 14;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.35), 24, 0.2, 0, 6);
+}
+.login-logo {
+    -fx-font-size: 40px;
+    -fx-text-fill: #8B2F24;
+    -fx-font-weight: bold;
+}
+.login-title {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #29231F;
+}
+.login-subtitle {
+    -fx-text-fill: #77716A;
+    -fx-padding: 0 0 8 0;
+}
+
+/* ---------- Panel ---------- */
+.dashboard-root {
+    -fx-background-color: #F7F4EE;
+}
+.top-bar {
+    -fx-background-color: #8B2F24;
+}
+.app-title {
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+.app-subtitle {
+    -fx-text-fill: #E9D9C4;
+    -fx-font-size: 12px;
+}
+.user-label {
+    -fx-text-fill: white;
+    -fx-padding: 0 8 0 0;
+}
+.status-bar {
+    -fx-background-color: #29231F;
+}
+.status-text {
+    -fx-text-fill: #F7F4EE;
+}
+
+/* ---------- Formularios ---------- */
+.form-card {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-border-color: #E6DED2;
+    -fx-border-radius: 10;
+}
+.form-scroll {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-padding: 0;
+}
+.form-scroll > .viewport {
+    -fx-background-color: transparent;
+}
+.form-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #8B2F24;
+}
+.field-label {
+    -fx-font-weight: bold;
+    -fx-text-fill: #29231F;
+    -fx-font-size: 12px;
+}
+.hint-text {
+    -fx-text-fill: #77716A;
+    -fx-font-size: 11px;
+}
+.text-field, .text-area, .combo-box, .password-field {
+    -fx-background-radius: 6;
+    -fx-border-color: #E6DED2;
+    -fx-border-radius: 6;
+    -fx-background-color: white;
+}
+.text-field:focused, .text-area:focused, .password-field:focused, .combo-box:focused {
+    -fx-border-color: #C99B52;
+}
+.preview-box {
+    -fx-background-color: #F7F4EE;
+    -fx-background-radius: 8;
+    -fx-border-color: #E6DED2;
+    -fx-border-radius: 8;
+}
+
+/* ---------- Mensajes ---------- */
+.msg-error {
+    -fx-text-fill: #B3261E;
+    -fx-font-weight: bold;
+}
+.msg-ok {
+    -fx-text-fill: #2E7D32;
+    -fx-font-weight: bold;
+}
+
+/* ---------- Botones ---------- */
+.button {
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+    -fx-padding: 7 14 7 14;
+}
+.btn-primary {
+    -fx-background-color: #8B2F24;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+.btn-primary:hover { -fx-background-color: #68231C; }
+.btn-secondary {
+    -fx-background-color: #E6DED2;
+    -fx-text-fill: #29231F;
+}
+.btn-secondary:hover { -fx-background-color: #D8CDBD; }
+.btn-danger {
+    -fx-background-color: white;
+    -fx-border-color: #B3261E;
+    -fx-border-radius: 6;
+    -fx-text-fill: #B3261E;
+}
+.btn-danger:hover { -fx-background-color: #FDECEA; }
+.btn-light {
+    -fx-background-color: rgba(255,255,255,0.15);
+    -fx-text-fill: white;
+}
+.btn-light:hover { -fx-background-color: rgba(255,255,255,0.28); }
+.btn-gold {
+    -fx-background-color: #C99B52;
+    -fx-text-fill: #29231F;
+    -fx-font-weight: bold;
+}
+.btn-gold:hover { -fx-background-color: #B88A42; }
+
+/* ---------- Tablas y pestañas ---------- */
+.table-view {
+    -fx-background-radius: 10;
+    -fx-border-color: #E6DED2;
+    -fx-border-radius: 10;
+}
+.table-view .column-header-background {
+    -fx-background-color: #F1EADF;
+}
+.table-row-cell:selected {
+    -fx-background-color: #C99B52;
+}
+.table-row-cell:selected .text {
+    -fx-fill: #29231F;
+}
+.table-row-cell.row-inactiva .text {
+    -fx-fill: #9A938B;
+}
+.tab-pane > .tab-header-area .tab:selected {
+    -fx-background-color: white;
+}

@@ -1,0 +1,12 @@
+# Copia este archivo como config.properties (en la raíz del proyecto) y ajusta tus datos.
+# config.properties NO se sube a Git (está en .gitignore).
+
+# Base de datos MySQL (la misma que usa la web Flask: chifa_fusion_db)
+db.host=localhost
+db.port=3306
+db.name=chifa_fusion_db
+db.user=root
+db.password=
+
+# URL de la web Flask (solo se usa para el botón "Ver carta en la web")
+web.url=http://localhost:5000
