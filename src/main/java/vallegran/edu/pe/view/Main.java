@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import vallegran.edu.pe.controller.LoginController;
 import vallegran.edu.pe.controller.MainController;
+import vallegran.edu.pe.model.SshTunnel;
 import vallegran.edu.pe.model.Usuario;
 
 import java.net.URL;
@@ -21,6 +22,9 @@ public class Main extends Application {
         stage.setTitle("CHIFA FUSION · Administración");
         mostrarLogin();
         stage.show();
+
+        // Cierra la sesión SSH y el túnel al salir de la aplicación.
+        stage.setOnCloseRequest(e -> SshTunnel.getInstance().stop());
     }
 
     private void mostrarLogin() {

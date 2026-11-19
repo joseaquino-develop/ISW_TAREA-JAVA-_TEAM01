@@ -1,12 +1,20 @@
 # Copia este archivo como config.properties (en la raíz del proyecto) y ajusta tus datos.
 # config.properties NO se sube a Git (está en .gitignore).
 
-# Base de datos MySQL (la misma que usa la web Flask: chifa_fusion_db)
+# Base de datos MySQL a través del túnel SSH local (localhost)
 db.host=localhost
 db.port=3306
 db.name=chifa_fusion_db
-db.user=root
-db.password=
+db.user=app_desktop
+db.password=TU_CONTRASEÑA
+
+# Túnel SSH (JSch) hacia la RDS privada mediante la instancia EC2 bastión
+ssh.host=18.212.236.72
+ssh.port=22
+ssh.user=ubuntu
+ssh.key=ruta/a/tu-llave.pem
+ssh.remote.host=database-1.cnqjpfxoqmvf.us-east-1.rds.amazonaws.com
+ssh.remote.port=3306
 
 # URL de la web Flask (solo se usa para el botón "Ver carta en la web")
 web.url=http://localhost:5000

@@ -17,10 +17,19 @@ Además trae **login** contra la tabla `usuarios` (clave guardada como hash SHA-
 2. Si ya tenías la BD creada con el `schema.sql` original, igual ejecútalo: solo agrega `usuarios`.
 
 ## 2. Configuración
-1. Revisa `config.properties` (raíz del proyecto): host, puerto, usuario y contraseña de tu MySQL.
+1. Revisa `config.properties` (raíz del proyecto): host, puerto, usuario y contraseña de tu MySQL,
+   más los parámetros SSH (`ssh.host`, `ssh.port`, `ssh.user`, `ssh.key` con la ruta a tu llave `.pem`).
    (`config.properties.example` es la plantilla; `config.properties` está en `.gitignore`.)
 2. La web Flask debe apuntar a **la misma BD**: en su `.env` usa el mismo `DB_HOST`, `DB_PORT`, `DB_NAME`,
    `DB_USER` y `DB_PASSWORD`.
+
+## Túnel SSH automático (JSch)
+- La app usa **com.jcraft:jsch** (ver `pom.xml`). Antes de cada conexión JDBC, `Conexion.getConnection()`
+  inicia una sesión SSH con la llave privada `.pem` y abre un port forwarding local:
+  `localhost:3306 → database-1.cnqjpfxoqmvf.us-east-1.rds.amazonaws.com:3306` vía la EC2 bastión.
+- El túnel se cierra solo al cerrar la ventana principal o al apagar la JVM (shutdown hook).
+- Requisito: tener la llave `.pem` accesible en la ruta indicada en `ssh.key` y permisos de red
+  hacia la instancia bastión (puerto 22).
 
 ## 3. Abrir en IntelliJ IDEA
 1. `File > Open` y elige la carpeta `ISW_TAREA_TEAM01_java` (la que tiene el `pom.xml`).

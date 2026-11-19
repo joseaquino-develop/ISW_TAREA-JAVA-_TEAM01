@@ -16,6 +16,7 @@
         <maven.compiler.release>17</maven.compiler.release>
         <javafx.version>17.0.20</javafx.version>
         <mysql.version>8.4.0</mysql.version>
+        <jsch.version>0.2.20</jsch.version>
     </properties>
 
     <dependencies>
@@ -28,6 +29,12 @@
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
             <version>${mysql.version}</version>
+        </dependency>
+        <!-- Túnel SSH automático (port forwarding) hacia la RDS privada vía EC2 bastión -->
+        <dependency>
+            <groupId>com.github.mwiede</groupId>
+            <artifactId>jsch</artifactId>
+            <version>${jsch.version}</version>
         </dependency>
     </dependencies>
 

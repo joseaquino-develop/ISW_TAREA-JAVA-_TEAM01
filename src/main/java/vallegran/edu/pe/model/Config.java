@@ -16,16 +16,44 @@ public final class Config {
 
     private static final Properties PROPS = new Properties();
 
+    /** Directorio donde se encuentra config.properties (raíz del proyecto). */
+    private static final Path BASE_DIR;
+
     static {
-        Path archivo = Path.of("config.properties");
+        Path archivo = Path.of("config.properties").toAbsolutePath().normalize();
+        BASE_DIR = archivo.getParent();
+        boolean cargado = false;
         if (Files.exists(archivo)) {
             try (InputStream in = Files.newInputStream(archivo);
                  InputStreamReader reader = new InputStreamReader(in, StandardCharsets.UTF_8)) {
                 PROPS.load(reader);
+                cargado = true;
             } catch (IOException e) {
-                System.err.println("No se pudo leer config.properties: " + e.getMessage());
+                System.err.println("No se pudo leer config.properties en " + archivo + ": " + e.getMessage());
             }
         }
+        if (cargado) {
+            System.out.println("[Config] config.properties cargado desde: " + archivo);
+        } else {
+            System.err.println("[Config] ADVERTENCIA: no se encontró config.properties en " + archivo
+                    + ". Copia config.properties.example y ajusta tus datos; de lo contrario se usarán valores por defecto.");
+        }
+    }
+
+    /**
+     * Resuelve una ruta de archivo: si es absoluta la devuelve tal cual;
+     * si es relativa, la resuelve contra el directorio de config.properties
+     * (raíz del proyecto), independientemente del working directory de ejecución.
+     */
+    public static Path resolvePath(String ruta) {
+        if (ruta == null || ruta.isBlank()) {
+            return null;
+        }
+        Path p = Path.of(ruta);
+        if (p.isAbsolute()) {
+            return p.normalize();
+        }
+        return BASE_DIR.resolve(p).normalize();
     }
 
     private Config() {
@@ -60,5 +88,41 @@ public final class Config {
 
     public static String webUrl() {
         return get("web.url", "http://localhost:5000");
+    }
+
+    /* ===================== Parámetros del túnel SSH (JSch) ===================== */
+
+    public static String sshHost() {
+        return get("ssh.host", "");
+    }
+
+    public static int sshPort() {
+        return Integer.parseInt(get("ssh.port", "22"));
+    }
+
+    public static String sshUser() {
+        return get("ssh.user", "");
+    }
+
+    public static String sshKey() {
+        String valor = PROPS.getProperty("ssh.key");
+        if (valor == null || valor.isBlank()) {
+            return "";
+        }
+        Path resuelto = resolvePath(valor);
+        return resuelto == null ? "" : resuelto.toString();
+    }
+
+    public static Path sshKeyPath() {
+        String valor = PROPS.getProperty("ssh.key");
+        return resolvePath(valor);
+    }
+
+    public static String sshRemoteHost() {
+        return get("ssh.remote.host", "database-1.cnqjpfxoqmvf.us-east-1.rds.amazonaws.com");
+    }
+
+    public static int sshRemotePort() {
+        return Integer.parseInt(get("ssh.remote.port", "3306"));
     }
 }
